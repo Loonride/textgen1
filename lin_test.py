@@ -11,7 +11,7 @@ import psutil
 from pathlib import Path
 import datetime
 
-device = 'cuda'
+device = 'cpu'
 
 class Lin(nn.Module):
     def __init__(self):
