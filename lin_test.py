@@ -18,14 +18,17 @@ class Lin(nn.Module):
         """ Define and instantiate your layers"""
         super(Lin, self).__init__()
 
-        self.fc1 = nn.Linear(2, 160000)
+        self.lstm1 = nn.LSTM(1, 10, batch_first=True)
+        self.fc1 = nn.Linear(10, 160000)
         self.fc2 = nn.Linear(160000, 4)
 
     def forward(self, x):
-        res = F.relu(self.fc1(x))
-        res = self.fc2(res)
-        return res
+        x, _ = self.lstm1(x)
+        print(x.shape)
+        x = F.relu(self.fc1(x))
+        x = self.fc2(x)
+        return x
 
 net = Lin().to(device)
-data = torch.tensor([1.0, 2.0], device=device)
+data = torch.tensor([[[1.0], [2.0]]], device=device)
 print(net(data))
