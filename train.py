@@ -37,11 +37,8 @@ save_dir = Path("training_data") / datetime.datetime.now().strftime("%Y-%m-%dT%H
 save_dir.mkdir(parents=True)
 log_interval = 10
 
-print(get_mem_msg())
 model = LSTM(n_words_set)
-print(get_mem_msg())
 model = model.to(device)
-print(get_mem_msg())
 loss_func = nn.NLLLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.00025)
 
@@ -57,15 +54,12 @@ def train(model):
             input_seqs = input_seqs.to(device)
             target_labels = target_labels.to(device)
 
-            print(get_mem_msg())
             res = model(input_seqs)
-            print(get_mem_msg())
 
             optimizer.zero_grad()
             loss = loss_func(res, target_labels)
             loss.backward()
             optimizer.step()
-            print(get_mem_msg())
 
             # print statistics
             total_loss += loss.item()

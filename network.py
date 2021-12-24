@@ -24,8 +24,9 @@ class LSTM(nn.Module):
         """ Define and instantiate your layers"""
         super(LSTM, self).__init__()
 
+        self.lstm1 = nn.LSTM(1, 512, batch_first=True)
         self.lstm2 = nn.LSTM(512, 2048, batch_first=True)
-        
+
         self.fc1 = nn.Linear(2048, 4096)
         self.fc2 = nn.Linear(4096, n_words_set)
         self.log_softmax = nn.LogSoftmax(dim=1)

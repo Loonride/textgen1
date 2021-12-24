@@ -18,8 +18,8 @@ class Lin(nn.Module):
         """ Define and instantiate your layers"""
         super(Lin, self).__init__()
 
-        self.fc1 = nn.Linear(2, 16000)
-        self.fc2 = nn.Linear(16000, 4)
+        self.fc1 = nn.Linear(2, 160000)
+        self.fc2 = nn.Linear(160000, 4)
 
     def forward(self, x):
         res = F.relu(self.fc1(x))
