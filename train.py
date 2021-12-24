@@ -35,7 +35,7 @@ text_gen_train_loader = torch.utils.data.DataLoader(dataset=text_gen_train,
 
 save_dir = Path("training_data") / datetime.datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
 save_dir.mkdir(parents=True)
-log_interval = 10
+log_interval = 100
 
 model = LSTM(n_words_set)
 model = model.to(device)
