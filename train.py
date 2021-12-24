@@ -54,12 +54,15 @@ def train(model):
             input_seqs = input_seqs.to(device)
             target_labels = target_labels.to(device)
 
+            print(get_mem_msg())
             res = model(input_seqs)
+            print(get_mem_msg())
 
             optimizer.zero_grad()
             loss = loss_func(res, target_labels)
             loss.backward()
             optimizer.step()
+            print(get_mem_msg())
 
             # print statistics
             total_loss += loss.item()
