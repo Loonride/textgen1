@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import psutil
 from pathlib import Path
 import datetime
+from system_data import get_mem_msg
 
 device = 'cuda'
 
@@ -29,6 +30,8 @@ class Lin(nn.Module):
         x = self.fc2(x)
         return x
 
+print(get_mem_msg())
 net = Lin().to(device)
+print(get_mem_msg())
 data = torch.tensor([[[1.0], [2.0]]], device=device)
 print(net(data))
