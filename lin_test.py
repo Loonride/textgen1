@@ -20,8 +20,8 @@ class Lin(nn.Module):
         super(Lin, self).__init__()
 
         self.lstm1 = nn.LSTM(1, 10, batch_first=True)
-        self.fc1 = nn.Linear(10, 160000)
-        self.fc2 = nn.Linear(160000, 4)
+        self.fc1 = nn.Linear(10, 200000)
+        self.fc2 = nn.Linear(200000, 4)
 
     def forward(self, x):
         x, _ = self.lstm1(x)
