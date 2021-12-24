@@ -25,15 +25,18 @@ class LSTM(nn.Module):
         super(LSTM, self).__init__()
         
         self.lstm1 = nn.LSTM(1, 512, batch_first=True)
-        self.lstm2 = nn.LSTM(512, 2048, batch_first=True)
+        self.fc1 = nn.Linear(512, 1024)
+        self.fc2 = nn.Linear(1024, n_words_set)
+
+        # self.lstm2 = nn.LSTM(512, 2048, batch_first=True)
         
-        self.fc1 = nn.Linear(2048, 8192)
-        self.fc2 = nn.Linear(8192, n_words_set)
+        # self.fc1 = nn.Linear(2048, 8192)
+        # self.fc2 = nn.Linear(8192, n_words_set)
         self.log_softmax = nn.LogSoftmax(dim=1)
 
     def forward(self, x):
         out, _ = self.lstm1(x)
-        out, _ = self.lstm2(out)
+        # out, _ = self.lstm2(out)
         out_last = out[:,-1,:]
         res = F.relu(self.fc1(out_last))
         res = self.fc2(res)
